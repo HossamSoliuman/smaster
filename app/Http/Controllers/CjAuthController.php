@@ -14,7 +14,7 @@ class CjAuthController extends LichtBaseController
     public function index()
     {
         $cjAuths = CjAuth::all();
-        return view('cjAuths', compact('cjAuths'));
+        return view('cjauths', compact('cjAuths'));
     }
 
     public function store(StoreCjAuthRequest $request)
