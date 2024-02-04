@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07ab7edd6a3a3413dd4b998870620305",
+    "content-hash": "cde8abc0c08f0a890ade7c3046d618bb",
     "packages": [
         {
             "name": "brick/math",
@@ -1391,20 +1391,20 @@
         },
         {
             "name": "hossamsoliuman/licht",
-            "version": "1.12.1",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HossamSoliuman/licht.git",
-                "reference": "0df910b912ae74d810f7d732fcad09bf510badbf"
+                "reference": "3c20d0688dcd90e9cc57c909f3d54f6effbf8adf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HossamSoliuman/licht/zipball/0df910b912ae74d810f7d732fcad09bf510badbf",
-                "reference": "0df910b912ae74d810f7d732fcad09bf510badbf",
+                "url": "https://api.github.com/repos/HossamSoliuman/licht/zipball/3c20d0688dcd90e9cc57c909f3d54f6effbf8adf",
+                "reference": "3c20d0688dcd90e9cc57c909f3d54f6effbf8adf",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^10.0",
+                "laravel/framework": "^9.0 || ^10.0",
                 "php": "^8.0"
             },
             "type": "library",
@@ -1433,9 +1433,9 @@
             "description": "CRUDs generator",
             "support": {
                 "issues": "https://github.com/HossamSoliuman/licht/issues",
-                "source": "https://github.com/HossamSoliuman/licht/tree/v1.12.1"
+                "source": "https://github.com/HossamSoliuman/licht/tree/v1.13.1"
             },
-            "time": "2024-01-23T21:01:43+00:00"
+            "time": "2024-02-03T15:23:48+00:00"
         },
         {
             "name": "laravel/framework",
