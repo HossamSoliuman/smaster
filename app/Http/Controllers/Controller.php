@@ -7,8 +7,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Traits\CjToken;
+use Hossam\Licht\Traits\ApiResponse;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests,CjToken;
+    use ApiResponse,AuthorizesRequests, DispatchesJobs, ValidatesRequests,CjToken;
 }
