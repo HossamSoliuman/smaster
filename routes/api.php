@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\SocialiteController;
 use App\Jobs\CheckTokenExpiration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

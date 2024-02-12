@@ -5,6 +5,7 @@ use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TableController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,10 @@ Auth::routes([
 //     ]);
 //     return $user;
 // });
+
+Route::get('api/auth/{provider}', [SocialiteController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
+Route::view('tm', 'tm');
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -122,7 +127,7 @@ Route::get('te', function () {
                     Log::error('Failed to refresh access token: ' . $response->status());
                 }
             } else {
-                return 'three';///three
+                return 'three'; ///three
                 Log::info('Access token does not need to be refreshed yet.');
             }
         }
