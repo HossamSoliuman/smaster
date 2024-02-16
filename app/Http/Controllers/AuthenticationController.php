@@ -34,7 +34,7 @@ class AuthenticationController extends Controller
         $validated = $request->validated();
 
         if (!Auth::attempt($validated)) {
-            return $this->apiResponse(null,'Email or password is wrong',0, 401);
+            return $this->apiResponse(null, 'Email or password is wrong', 0, 401);
         }
 
         $user = User::where('email', $validated['email'])->first();
@@ -50,9 +50,14 @@ class AuthenticationController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-
-        return $this->apiResponse([], 'Successfully logged out');
+        if ($request->user()) {
+            // If authenticated, delete user tokens
+            $request->user()->tokens()->delete();
+            return $this->apiResponse([], 'Successfully logged out');
+        } else {
+            // If not authenticated, return error response
+            return $this->apiErrorResponse('Unauthorized', 401);
+        }
     }
 
     public function update(UpdateAuthRequest $request)

@@ -24,8 +24,12 @@ use Illuminate\Support\Facades\Http;
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('register', [AuthenticationController::class, 'register']);
 
-Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('logout', [AuthenticationController::class, 'logout']);
 });
 
 Route::get('categories', [CategoryController::class, 'index']);
