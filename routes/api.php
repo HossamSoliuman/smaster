@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Resources\UserResource;
 use App\Jobs\CheckTokenExpiration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::post('register', [AuthenticationController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return UserResource::make($request->user());
     });
     Route::post('logout', [AuthenticationController::class, 'logout']);
 });
