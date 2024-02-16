@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\SocialiteController;
 use App\Jobs\CheckTokenExpiration;
@@ -29,6 +30,9 @@ Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::post('products', [CategoryController::class, 'products']);
+
+Route::get('test/categories', [ControllersCategoryController::class, 'index']);
+Route::get('test/products', [ControllersCategoryController::class, 'products']);
 
 Route::get('refresh-token', function () {
     $checkToken = new CheckTokenExpiration();

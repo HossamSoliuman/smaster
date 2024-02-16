@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
         $user = User::create($validData);
         $token = $user->createToken('auth_token')->plainTextToken;
         $user = User::find($user->id);
-        return $this->successResponse(
+        return $this->apiResponse(
             [
                 'token' => $token,
                 'user' => UserResource::make($user),
@@ -34,13 +34,13 @@ class AuthenticationController extends Controller
         $validated = $request->validated();
 
         if (!Auth::attempt($validated)) {
-            return $this->errorResponse('Email or password is wrong', 401);
+            return $this->apiResponse(null,'Email or password is wrong',0, 401);
         }
 
         $user = User::where('email', $validated['email'])->first();
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return $this->successResponse(
+        return $this->apiResponse(
             [
                 'token' => $token,
                 'user' => UserResource::make($user),
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
     {
         $request->user()->tokens()->delete();
 
-        return $this->customResponse([], 'Successfully logged out');
+        return $this->apiResponse([], 'Successfully logged out');
     }
 
     public function update(UpdateAuthRequest $request)
@@ -70,7 +70,7 @@ class AuthenticationController extends Controller
 
         $user->save();
 
-        return $this->customResponse(
+        return $this->apiResponse(
             [
                 'user' => UserResource::make($user),
             ],

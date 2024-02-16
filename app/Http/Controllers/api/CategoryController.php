@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $response = Http::withHeaders([
             'CJ-Access-Token' => $this->getToken(),
         ])->get('https://developers.cjdropshipping.com/api2.0/v1/product/getCategory');
-
+        
         if ($response->successful()) {
             $data = $response->json();
 
