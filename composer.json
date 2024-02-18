@@ -12,6 +12,7 @@
         "doctrine/dbal": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "hossamsoliuman/licht": "^1.13",
+        "laravel/cashier": "^15.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.11",
