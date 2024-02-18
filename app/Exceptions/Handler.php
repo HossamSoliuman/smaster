@@ -57,6 +57,15 @@ class Handler extends ExceptionHandler
     {
         return $this->apiResponse(null, $exception->errors(), 0, $exception->status);
     }
+    // protected function invalidJson($request, ValidationException $exception)
+    // {
+
+    //     foreach ($exception->errors() as $field => $message) {
+    //         $firstErrorMessage = $message[0];
+    //     }
+
+    //     return $this->apiResponse(null, $firstErrorMessage, 0, $exception->status);
+    // }
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
