@@ -5,6 +5,9 @@
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('cj-auths.index') }}">
                     cj auth
                 </a>
+                <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('orders.index') }}">
+                    Orders
+                </a>
                 <form action="{{route('logout')}}" method="post">
                     @csrf
                     <button type="submit" class="nav-link btn btn-danger btn-block mb-2" >

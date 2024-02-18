@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
+use Carbon\Carbon;
 use Hossam\Licht\Controllers\LichtBaseController;
 
 class OrderController extends LichtBaseController
@@ -13,9 +14,9 @@ class OrderController extends LichtBaseController
 
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::with(['user'])->get();
         $orders = OrderResource::collection($orders);
-        return view('orders', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     public function store(StoreOrderRequest $request)
@@ -26,7 +27,8 @@ class OrderController extends LichtBaseController
 
     public function show(Order $order)
     {
-        return $this->successResponse(OrderResource::make($order));
+        $order->load('orderItems', 'user');
+        return view('orders.details', compact('order'));
     }
 
     public function update(UpdateOrderRequest $request, Order $order)

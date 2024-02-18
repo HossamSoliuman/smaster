@@ -56,6 +56,8 @@ class CheckoutController extends Controller
                 'order_id' => $order->id,
                 'product_id' => $product['id'],
                 'quantity' => $product['quantity'],
+                'name' => $product['name'],
+                'price' => $product['amount'],
             ]);
         }
         return $this->apiResponse(['payment_url' => $checkoutSession->url]);

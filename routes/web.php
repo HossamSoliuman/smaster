@@ -6,6 +6,7 @@ use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TableController;
 use App\Models\User;
@@ -60,4 +61,5 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('cj-auths', CjAuthController::class);
+    Route::resource('orders', OrderController::class);
 });
