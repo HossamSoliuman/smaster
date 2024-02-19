@@ -11,6 +11,8 @@ class OrderItems extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'price',
+        'name',
         'quantity',
     ];
     public function order()
