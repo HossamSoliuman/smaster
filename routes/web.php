@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CjAuthController;
 use App\Http\Controllers\ExtractionController;
@@ -62,4 +63,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('cj-auths', CjAuthController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('banners', BannerController::class);
+
 });
+

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MatchController;
@@ -40,6 +41,8 @@ Route::post('products', [CategoryController::class, 'products']);
 
 Route::get('test/categories', [ControllersCategoryController::class, 'index']);
 Route::get('test/products', [ControllersCategoryController::class, 'products']);
+
+Route::get('banners', [BannerController::class, 'apiIndex']);
 
 
 

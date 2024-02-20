@@ -8,9 +8,12 @@
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('orders.index') }}">
                     Orders
                 </a>
-                <form action="{{route('logout')}}" method="post">
+                <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('banners.index') }}">
+                    Banners
+                </a>
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="nav-link btn btn-danger btn-block mb-2" >
+                    <button type="submit" class="nav-link btn btn-danger btn-block mb-2">
                         Logout
                     </button>
                     </a>
