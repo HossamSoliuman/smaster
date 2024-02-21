@@ -14,6 +14,9 @@
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('categories.index') }}">
                     Categories
                 </a>
+                <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('product.index') }}">
+                    Products
+                </a>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" class="nav-link btn btn-danger btn-block mb-2">
