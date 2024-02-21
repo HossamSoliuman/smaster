@@ -84,7 +84,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
-            return response()->json(['message' => 'Not Found!'], 404);
+            return $this->apiResponse(null, 'Model not found', 0, 404);
         }
         if ($exception instanceof NotFoundHttpException && $request->wantsJson()) {
             return $this->apiResponse(null, 'Endpoint not exist', 0, 404);

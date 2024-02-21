@@ -13,4 +13,10 @@ class ApiCategoryController extends Controller
         $categories = Category::all();
         return $this->apiResponse(CategoryResource::collection($categories));
     }
+    public function products(Category $category)
+    {
+        $category->load('products');
+
+        return $this->apiResponse(CategoryResource::make($category));
+    }
 }
