@@ -1,16 +1,12 @@
 <?php
 
-use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\CategoryController as ControllersCategoryController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\MatchController;
-use App\Http\Controllers\SocialiteController;
 use App\Http\Resources\UserResource;
 use App\Jobs\CheckTokenExpiration;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +31,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('product-checkout', [CheckoutController::class, 'checkout']);
 });
 
-Route::get('categories', [CategoryController::class, 'index']);
-Route::post('products', [CategoryController::class, 'products']);
+Route::get('categories', [ApiCategoryController::class, 'index']);
+Route::post('products', [ApiCategoryController::class, 'products']);
 
-Route::get('test/categories', [ControllersCategoryController::class, 'index']);
-Route::get('test/products', [ControllersCategoryController::class, 'products']);
+
+Route::get('banners', [BannerController::class, 'apiIndex']);
 
 
 
