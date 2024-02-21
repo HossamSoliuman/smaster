@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use Hossam\Licht\Controllers\LichtBaseController;
 
 class ProductController extends LichtBaseController
@@ -13,31 +14,40 @@ class ProductController extends LichtBaseController
 
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->paginate(10);
+        $categories = Category::all();
         $products = ProductResource::collection($products);
-        return view('products', compact('products'));
+        return view('products', compact(['products', 'categories']));
     }
-
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->validated());
-        return redirect()->route('products.index');
+        $validData = $request->validated();
+        $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);
+        Product::create($validData);
+        return redirect()->route('product.index');
     }
 
-    public function show(Product $product)
+    public function show(Product $banner)
     {
-        return $this->successResponse(ProductResource::make($product));
+        return $this->successResponse(ProductResource::make($banner));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->validated());
-        return redirect()->route('products.index');
+        $validData = $request->validated();
+        // return $validData;
+        if ($request->hasFile('main_image')) {
+            $this->deleteFile($product->main_image);
+            $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);
+        }
+        $product->update($validData);
+        return redirect()->route('product.index');
     }
 
     public function destroy(Product $product)
     {
+        $this->deleteFile($product->main_image);
         $product->delete();
-        return redirect()->route('products.index');
+        return redirect()->route('product.index');
     }
 }

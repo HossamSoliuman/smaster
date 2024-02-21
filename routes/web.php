@@ -9,6 +9,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TableController;
 use App\Models\User;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Finder\Iterator\FilecontentFilterIterator;
 
 use App\Models\CjAuth;
+use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -66,6 +68,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('orders', OrderController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('categories', CategoryController::class);
-
+    Route::resource('product', ProductController::class);
 });
-

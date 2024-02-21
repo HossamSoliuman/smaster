@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-
+    const PathToStoredImages = 'products/images';
     protected $fillable = [
         'name',
         'description',
