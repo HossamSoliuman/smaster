@@ -32,8 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('categories', [ApiCategoryController::class, 'index']);
-Route::get('categories/{category}', [ApiCategoryController::class, 'products']);
-Route::post('products', [ApiCategoryController::class, 'products']);
+Route::get('categories/{category}', [ApiCategoryController::class, 'show']);
+Route::get('products', [ApiCategoryController::class, 'products']);
 
 
 Route::get('banners', [BannerController::class, 'apiIndex']);
