@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('index', IndexController::class);
+    Route::get('index', IndexController::class)->name('admin.index');
     Route::resource('cj-auths', CjAuthController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('banners', BannerController::class);
