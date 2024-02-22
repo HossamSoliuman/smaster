@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('shipping_address');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();;
             $table->string('status');
+            $table->double('total_amount')->nullable();
             $table->text('session_id');
             $table->timestamps();
         });

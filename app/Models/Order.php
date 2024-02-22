@@ -17,6 +17,7 @@ class Order extends Model
         'user_id',
         'status',
         'session_id',
+        'total_amount'
     ];
     const STATUS = [
         'paid' => 'paid',

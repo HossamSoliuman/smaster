@@ -23,6 +23,7 @@ class CheckoutController extends Controller
         $products = $request->validated('products');
         $user = auth()->user();
         $lineItems = [];
+        $total_amount = 0;
 
         foreach ($products as $productData) {
             $product = Product::find($productData['id']);
@@ -36,6 +37,7 @@ class CheckoutController extends Controller
                 ],
                 'quantity' => $productData['quantity'],
             ];
+            $total_amount += $product->price * $productData['quantity'];
         }
 
         $checkoutSession = \Stripe\Checkout\Session::create([
@@ -51,6 +53,7 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'status' => Order::STATUS['unpaid'],
             'session_id' => $checkoutSession->id,
+            'total_amount' => $total_amount,
         ]);
         foreach ($products as $productData) {
             $product = Product::find($productData['id']);

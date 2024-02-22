@@ -7,6 +7,7 @@ use App\Http\Controllers\CjAuthController;
 use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -44,17 +45,6 @@ use Illuminate\Support\Facades\Log;
 Auth::routes([
     'register' => false
 ]);
-// Route::get('t', function () {
-//     $user = User::create([
-//         'name' => 'Admin',
-//         'email' => 'admin@gmail.com',
-//         'email_verified_at' => now(),
-//         'password' => Hash::make('password'),
-//         'role' => 'admin',
-//         'remember_token' => 'jklj;joijklnkn',
-//     ]);
-//     return $user;
-// });
 
 Route::get('api/auth/{provider}', [SocialiteController::class, 'redirectToProvider']);
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
@@ -65,6 +55,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('index', IndexController::class);
     Route::resource('cj-auths', CjAuthController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('banners', BannerController::class);
