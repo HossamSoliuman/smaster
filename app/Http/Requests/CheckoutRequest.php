@@ -25,7 +25,7 @@ class CheckoutRequest extends FormRequest
             'shipping_address' => ['required', 'array'],
             'products' => ['required', 'array', 'min:1'],
             'products.*' => ['array'],
-            'products.*.product_id' => ['required', 'exists:products,id'],
+            'products.*.id' => ['required', 'exists:products,id'],
             'products.*.quantity' => ['required', 'min:1'],
 
         ];

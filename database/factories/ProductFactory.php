@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->text(50),
             'description' => fake()->text(500),
-            'main_image' => 'products/images/product1_1708563510.jpg',
+            'main_image' => 'products/images/product1_1708628023.jpg',
             'price' => fake()->randomNumber(3),
             'category_id' => random_int(1, 10),
 

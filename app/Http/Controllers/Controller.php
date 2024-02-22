@@ -8,8 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Traits\CjToken;
 use App\Traits\ApiResponse;
+use App\Traits\ManagesFiles;
 
 class Controller extends BaseController
 {
-    use ApiResponse, AuthorizesRequests, DispatchesJobs, ValidatesRequests, CjToken;
+    use ManagesFiles, ApiResponse, AuthorizesRequests, DispatchesJobs, ValidatesRequests, CjToken;
 }
