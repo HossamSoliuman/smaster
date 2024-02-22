@@ -142,8 +142,8 @@
                                     </div>
                                     <div class="">
                                         <a href="{{ route('product.show', ['product' => $product->id]) }}"> <button
-                                                type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#editModal">View Details </button></a>
+                                                type="button" class="btn btn-primary" 
+                                                >View Details </button></a>
                                     </div>
 
                                 </td>
