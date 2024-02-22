@@ -9,7 +9,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Hossam\Licht\Controllers\LichtBaseController;
 
-class ProductController extends LichtBaseController
+class ProductController extends Controller
 {
 
     public function index()
@@ -27,15 +27,15 @@ class ProductController extends LichtBaseController
         return redirect()->route('product.index');
     }
 
-    public function show(Product $banner)
+    public function show(Product $product)
     {
-        return $this->successResponse(ProductResource::make($banner));
+        $product->load('productImages');
+        return view('product_view', compact('product'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
         $validData = $request->validated();
-        // return $validData;
         if ($request->hasFile('main_image')) {
             $this->deleteFile($product->main_image);
             $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);

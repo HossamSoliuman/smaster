@@ -27,7 +27,7 @@
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="description" class="form-control" placeholder="Product description" required></textarea>
+                                        <textarea name="description" class="form-control" placeholder="Product description" required style="height: 150px;""></textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -74,7 +74,7 @@
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="description" class="form-control" placeholder="Product description" required></textarea>
+                                        <textarea name="description" class="form-control" placeholder="Product description" style="height: 150px;" required></textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -107,7 +107,7 @@
                         <tr>
                             <th> Name</th>
                             <th> Description</th>
-                            <th> Main_image</th>
+                            <th> Main Image</th>
                             <th> Price</th>
                             <th> Category</th>
                             <th>Actions</th>
@@ -127,17 +127,25 @@
                                 </td>
                                 <td class=" product-price">{{ $product->price }}</td>
                                 <td class=" product-category_id">{{ $product->category->name }}</td>
-                                <td class="d-flex">
-                                    <button type="button" class="btn btn-warning btn-edit" data-toggle="modal"
-                                        data-target="#editModal">
-                                        Edit
-                                    </button>
-                                    <form action="{{ route('product.destroy', ['product' => $product->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class=" ml-3 btn btn-danger">Delete</button>
-                                    </form>
+                                <td class="">
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-warning btn-edit" data-toggle="modal"
+                                            data-target="#editModal">
+                                            Edit
+                                        </button>
+                                        <form action="{{ route('product.destroy', ['product' => $product->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class=" ml-3 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                    <div class="">
+                                        <a href="{{ route('product.show', ['product' => $product->id]) }}"> <button
+                                                type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#editModal">View Details </button></a>
+                                    </div>
+
                                 </td>
                             </tr>
                         @endforeach

@@ -2,9 +2,9 @@
     <div class="position-sticky">
         <ul class="nav flex-column mt-3">
             <li class="nav-item">
-                <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('cj-auths.index') }}">
+                {{-- <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('cj-auths.index') }}">
                     cj auth
-                </a>
+                </a> --}}
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('orders.index') }}">
                     Orders
                 </a>
