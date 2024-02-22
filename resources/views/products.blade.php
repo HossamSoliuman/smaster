@@ -27,9 +27,9 @@
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="description" class="form-control"
-                                            placeholder="Product description" required>
+                                        <textarea name="description" class="form-control" placeholder="Product description" required></textarea>
                                     </div>
+
                                     <div class="form-group">
                                         <input type="file" name="main_image" class="form-control"
                                             placeholder="Product main_image" required>
@@ -74,9 +74,9 @@
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="description" class="form-control"
-                                            placeholder="Product description" required>
+                                        <textarea name="description" class="form-control" placeholder="Product description" required></textarea>
                                     </div>
+
                                     <div class="form-group">
                                         <input type="file" name="main_image" class="form-control"
                                             placeholder="Product main_image" required>
@@ -143,6 +143,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $products->links() }}
             </div>
         </div>
     </div>
@@ -167,7 +168,7 @@
                 var ProductName = $(this).closest("tr").find(".product-name").text();
                 $('#editModal input[name="name"]').val(ProductName);
                 var ProductDescription = $(this).closest("tr").find(".product-description").text();
-                $('#editModal input[name="description"]').val(ProductDescription);
+                $('#editModal textarea[name="description"]').val(ProductDescription);
 
                 var ProductPrice = $(this).closest("tr").find(".product-price").text();
                 $('#editModal input[name="price"]').val(ProductPrice);
