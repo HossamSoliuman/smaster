@@ -14,7 +14,7 @@ class OrderController extends LichtBaseController
 
     public function index()
     {
-        $orders = Order::with(['user'])->get();
+        $orders = Order::with(['user'])->orderBy('created_at', 'desc')->paginate(10);
         $orders = OrderResource::collection($orders);
         return view('orders.index', compact('orders'));
     }
