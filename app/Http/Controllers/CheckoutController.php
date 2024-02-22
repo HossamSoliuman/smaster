@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\CheckoutRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\OrderItems;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
 
 class CheckoutController extends Controller
@@ -17,23 +17,24 @@ class CheckoutController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
     }
 
-    public function checkout(Request $request)
+    public function checkout(CheckoutRequest $request)
     {
-        $shipping_address = $request->shipping_address;
-        $products = $request->products;
+        $shipping_address = $request->validated('shipping_address');
+        $products = $request->validated('products');
         $user = auth()->user();
         $lineItems = [];
 
-        foreach ($products as $product) {
+        foreach ($products as $productData) {
+            $product = Product::find($productData['id']);
             $lineItems[] = [
                 'price_data' => [
                     'currency' => env('CASHIER_CURRENCY'),
-                    'unit_amount' => $product['amount'] * 100,
+                    'unit_amount' => $product->price * 100,
                     'product_data' => [
-                        'name' => $product['name'],
+                        'name' => $product->name,
                     ],
                 ],
-                'quantity' => $product['quantity'],
+                'quantity' => $productData['quantity'],
             ];
         }
 
@@ -51,13 +52,14 @@ class CheckoutController extends Controller
             'status' => Order::STATUS['unpaid'],
             'session_id' => $checkoutSession->id,
         ]);
-        foreach ($products as $product) {
+        foreach ($products as $productData) {
+            $product = Product::find($productData['id']);
             OrderItems::create([
                 'order_id' => $order->id,
-                'product_id' => $product['id'],
-                'quantity' => $product['quantity'],
-                'name' => $product['name'],
-                'price' => $product['amount'],
+                'product_id' => $product->id,
+                'quantity' => $productData['quantity'],
+                'name' => $product->name,
+                'price' => $product->price,
             ]);
         }
         return $this->apiResponse(['payment_url' => $checkoutSession->url]);

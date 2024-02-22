@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TableController;
 use App\Models\User;
@@ -69,4 +70,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('banners', BannerController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('product-images', ProductImageController::class)->only(['store', 'destroy']);
 });

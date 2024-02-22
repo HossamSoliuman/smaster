@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ApiCategoryController;
+use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProductController;
 use App\Http\Resources\UserResource;
 use App\Jobs\CheckTokenExpiration;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('categories', [ApiCategoryController::class, 'index']);
 Route::get('categories/{category}', [ApiCategoryController::class, 'show']);
 Route::get('products', [ApiCategoryController::class, 'products']);
+Route::get('products/{product}', [ApiProductController::class, 'show']);
 
 
 Route::get('banners', [BannerController::class, 'apiIndex']);
