@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $role = auth()->user()->role;
         if ($role == 'admin') {
-            return redirect()->route('cj-auths.index');
+            return redirect()->route('admin.index');
         } else if ($role == 'user')
             return 'user';
     }

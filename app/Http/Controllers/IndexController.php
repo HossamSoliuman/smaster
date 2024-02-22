@@ -16,6 +16,17 @@ class IndexController extends Controller
         $data['usersCount'] = User::count();
         $data['ordersCount'] = Order::where('status', Order::STATUS['paid'])->count();
         $data['revenue'] = Order::where('status', Order::STATUS['paid'])->sum('total_amount');
-        return $this->apiResponse($data);
+
+        // Fetch historical data for orders
+        $ordersData = Order::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->where('status', Order::STATUS['paid'])
+            ->groupBy('date')
+            ->get();
+
+        // Prepare data for chart
+        $dates = $ordersData->pluck('date');
+        $orderCounts = $ordersData->pluck('count');
+
+        return view('index', compact('data', 'dates', 'orderCounts'));
     }
 }
