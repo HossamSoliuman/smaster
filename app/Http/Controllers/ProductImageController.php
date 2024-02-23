@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateProductImageRequest;
 use App\Http\Resources\ProductImageResource;
 use Hossam\Licht\Controllers\LichtBaseController;
 
-class ProductImageController extends LichtBaseController
+class ProductImageController extends Controller
 {
 
     public function store(StoreProductImageRequest $request)
@@ -16,7 +16,7 @@ class ProductImageController extends LichtBaseController
         $validData = $request->validated();
         $validData['path'] = $this->uploadFile($validData['path'], ProductImage::PathToStoredImages);
         $productImage = ProductImage::create($validData);
-        return redirect()->back();
+        return $this->apiResponse(['path' => $productImage->path]);
     }
 
 

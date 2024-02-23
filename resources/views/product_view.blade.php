@@ -34,29 +34,33 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @foreach ($product->productImages as $image)
-                            <!-- Display Product Images/Videos -->
-                            <div class="mb-3">
-                                @if ($image->type == 'image')
-                                    <img src="{{ asset($image->path) }}" alt="Product Image"
-                                        class="img-fluid product-image">
-                                @elseif ($image->type == 'video')
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <video controls class="embed-responsive-item">
-                                            <source src="{{ asset($image->path) }}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                                @endif
-                                <!-- Delete Button -->
-                                <form action="{{ route('product-images.destroy', ['product_image' => $image->id]) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger mt-2">Delete</button>
-                                </form>
-                            </div>
-                        @endforeach
+
+                        <div id="uploadStatus" class="mb-3"></div>
+                        <div id="uploadedImages">
+                            @foreach ($product->productImages as $image)
+                                <!-- Display Product Images/Videos -->
+                                <div class="mb-3">
+                                    @if ($image->type == 'image')
+                                        <img src="{{ asset($image->path) }}" alt="Product Image"
+                                            class="img-fluid product-image">
+                                    @elseif ($image->type == 'video')
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <video controls class="embed-responsive-item">
+                                                <source src="{{ asset($image->path) }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    @endif
+                                    <!-- Delete Button -->
+                                    <form action="{{ route('product-images.destroy', ['product_image' => $image->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -70,13 +74,17 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('product-images.store') }}" method="post"
+                                <form id="uploadForm" action="{{ route('product-images.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <div class="form-group">
                                         <input type="file" name="path" class="form-control"
                                             placeholder="Product Image/Video" required>
+                                    </div>
+                                    <div id="imageUploadProgress" class="progress" style="display: none;">
+                                        <div id="uploadProgressBar" class="progress-bar" role="progressbar"
+                                            style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <div class="form-group">
                                         <select name="type" class="form-control">
@@ -85,7 +93,9 @@
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" id="cancelUpload" class="btn btn-danger">Cancel</button>
                                 </form>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -97,4 +107,55 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                var progressBar = $('#uploadProgressBar');
+                var statusMsg = $('#uploadStatus');
+                var uploadedImagesContainer = $('#uploadedImages');
+
+                $('#imageUploadProgress').show();
+
+                $.ajax({
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total * 100;
+                                progressBar.width(percentComplete + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        $('#imageUploadProgress').hide();
+                        $('#uploadForm')[0].reset();
+                        $('#staticBackdrop').modal('hide');
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        $('#imageUploadProgress').hide();
+                        statusMsg.html('<div class="alert alert-danger" role="alert">' + error +
+                            '</div>');
+                    }
+                });
+            });
+
+            $('#cancelUpload').click(function() {
+                $('#imageUploadProgress').hide();
+                $('#uploadForm')[0].reset();
+            });
+        });
+    </script>
 @endsection

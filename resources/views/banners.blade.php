@@ -31,8 +31,10 @@
                                             placeholder="Banner image" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="place" class="form-control" placeholder="Banner place"
-                                            required>
+                                        <select class="form-control" name="place" id="">
+                                            <option name="home" id="">Home Screen</option>
+                                            <option name="category" id="">Category Screen</option>
+                                        </select>
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -66,8 +68,10 @@
                                         <input type="file" name="image" class="form-control" accept="image/*">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="place" class="form-control" placeholder="Banner place"
-                                            required>
+                                        <select class="form-control" name="place" id="">
+                                            <select name="home" id="">Home Screen</select>
+                                            <select name="category" id="">Category Screen</select>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
