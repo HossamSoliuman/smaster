@@ -36,19 +36,24 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $validData = $request->validated();
+
         if ($request->hasFile('main_image')) {
-            if ($product->main_image != 'test.jpg'); {
+            if ($product->main_image == "test.jpg") {
+                $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);
+            } else {
                 $this->deleteFile($product->main_image);
             }
-            $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);
         }
+
         $product->update($validData);
         return redirect()->route('product.index');
     }
 
+
     public function destroy(Product $product)
     {
-        if ($product->main_image != 'test.jpg'); {
+        if ($product->main_image == "test.jpg") {
+        } else {
             $this->deleteFile($product->main_image);
         }
         $product->delete();
