@@ -37,7 +37,9 @@ class ProductController extends Controller
     {
         $validData = $request->validated();
         if ($request->hasFile('main_image')) {
-            $this->deleteFile($product->main_image);
+            if ($product->main_image != 'test.jpg'); {
+                $this->deleteFile($product->main_image);
+            }
             $validData['main_image'] = $this->uploadFile($request->file('main_image'), Product::PathToStoredImages);
         }
         $product->update($validData);
@@ -46,7 +48,9 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        $this->deleteFile($product->main_image);
+        if ($product->main_image != 'test.jpg'); {
+            $this->deleteFile($product->main_image);
+        }
         $product->delete();
         return redirect()->route('product.index');
     }
