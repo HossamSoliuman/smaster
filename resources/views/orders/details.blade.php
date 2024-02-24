@@ -6,7 +6,10 @@
             <div class="col-lg-8">
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">Order Details</h3>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="mb-0">Order Details</h3>
+                            <a href="{{ route('orders.export', $order) }}" class="btn btn-secondary">Export</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row mb-4">
@@ -50,7 +53,8 @@
                         <h5 class="mb-3">Order Items:</h5>
                         @foreach ($order->orderItems as $item)
                             <div class="media mb-4">
-                                <img style="max-width: 150px" src="{{ asset($item->product->main_image) }}" class="mr-3 rounded" alt="Product Image">
+                                <img style="max-width: 150px" src="{{ asset($item->product->main_image) }}"
+                                    class="mr-3 rounded" alt="Product Image">
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-2">{{ $item->name }}</h5>
                                     <p class="mb-1"><strong>Price:</strong> ${{ $item->price }}</p>
