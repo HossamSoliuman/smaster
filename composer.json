@@ -11,7 +11,7 @@
         "php": "^8.0.2",
         "doctrine/dbal": "^3.0",
         "fruitcake/laravel-cors": "dev-develop",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.8",
         "hossamsoliuman/licht": "^1.13",
         "laravel/cashier": "^15.2",
         "laravel/framework": "^10.0",
