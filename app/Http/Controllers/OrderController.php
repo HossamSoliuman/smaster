@@ -8,7 +8,8 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
 use Carbon\Carbon;
 use Hossam\Licht\Controllers\LichtBaseController;
-
+use DomPDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 class OrderController extends LichtBaseController
 {
 
@@ -41,5 +42,12 @@ class OrderController extends LichtBaseController
     {
         $order->delete();
         return redirect()->route('orders.index');
+    }
+
+    public function export(Order $order)
+    {
+        $pdf = Pdf::loadView('orders.export', compact('order'));
+
+        return $pdf->download('order_details.pdf');
     }
 }
