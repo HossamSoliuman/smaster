@@ -50,7 +50,7 @@
                         <h5 class="mb-3">Order Items:</h5>
                         @foreach ($order->orderItems as $item)
                             <div class="media mb-4">
-                                <img src="{{ asset($item->product->main_image) }}" class="mr-3 rounded" alt="Product Image">
+                                <img style="max-width: 150px" src="{{ asset($item->product->main_image) }}" class="mr-3 rounded" alt="Product Image">
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-2">{{ $item->name }}</h5>
                                     <p class="mb-1"><strong>Price:</strong> ${{ $item->price }}</p>
