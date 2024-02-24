@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Resources\UserResource;
 use App\Jobs\CheckTokenExpiration;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,8 @@ Route::get('categories', [ApiCategoryController::class, 'index']);
 Route::get('categories/{category}', [ApiCategoryController::class, 'show']);
 Route::get('products', [ApiCategoryController::class, 'products']);
 Route::get('products/{product}', [ApiProductController::class, 'show']);
-
+Route::get('shipping-address/countries',[ShippingController::class,'getCountries']);
+Route::get('shipping-address/cities',[ShippingController::class,'getCities']);
 
 Route::get('banners', [BannerController::class, 'apiIndex']);
 
