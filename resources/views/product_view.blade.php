@@ -28,9 +28,9 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Product Images/Videos</h5>
+                            <h5 class="mb-0">Product Images</h5>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#staticBackdrop">Add Image/Video</button>
+                                data-target="#staticBackdrop">Add Image</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -68,7 +68,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Add Image/Video</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Add Image</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

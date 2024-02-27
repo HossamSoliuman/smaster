@@ -25,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('register', [AuthenticationController::class, 'register']);
 
+Route::get('test', function () {
+    $par = request()->input('par');
+    return redirect($par);
+});
+
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function () {
@@ -38,8 +43,8 @@ Route::get('categories', [ApiCategoryController::class, 'index']);
 Route::get('categories/{category}', [ApiCategoryController::class, 'show']);
 Route::get('products', [ApiCategoryController::class, 'products']);
 Route::get('products/{product}', [ApiProductController::class, 'show']);
-Route::get('shipping-address/countries',[ShippingController::class,'getCountries']);
-Route::get('shipping-address/cities',[ShippingController::class,'getCities']);
+Route::get('shipping-address/countries', [ShippingController::class, 'getCountries']);
+Route::get('shipping-address/cities', [ShippingController::class, 'getCities']);
 
 Route::get('banners', [BannerController::class, 'apiIndex']);
 
