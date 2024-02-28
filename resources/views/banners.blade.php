@@ -33,7 +33,6 @@
                                     <div class="form-group">
                                         <select class="form-control" name="place" id="">
                                             <option name="home" id="">Home Screen</option>
-                                            <option name="category" id="">Category Screen</option>
                                         </select>
                                     </div>
                             </div>
@@ -69,8 +68,7 @@
                                     </div>
                                     <div class="form-group">
                                         <select class="form-control" name="place" id="">
-                                            <select name="home" id="">Home Screen</select>
-                                            <select name="category" id="">Category Screen</select>
+                                            <option name="home" id="">Home Screen</option>
                                         </select>
                                     </div>
                                 </form>
