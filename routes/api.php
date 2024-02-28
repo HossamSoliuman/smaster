@@ -27,6 +27,7 @@ Route::post('register', [AuthenticationController::class, 'register']);
 
 Route::get('test', function () {
     $par = request()->input('par');
+    return $par;
     return redirect($par);
 });
 
