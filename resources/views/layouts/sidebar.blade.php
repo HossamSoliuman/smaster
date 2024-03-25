@@ -11,6 +11,9 @@
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('banners.index') }}">
                     Banners
                 </a>
+                <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('nav-icons.index') }}">
+                    Navigation Icons
+                </a>
                 <a class="nav-link btn btn-secondary btn-block mb-2" href="{{ route('categories.index') }}">
                     Categories
                 </a>

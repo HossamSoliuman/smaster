@@ -2,34 +2,16 @@
 
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CjAuthController;
-use App\Http\Controllers\ExtractionController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\MatchController;
+use App\Http\Controllers\NaviconController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\TableController;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Finder\Iterator\FilecontentFilterIterator;
-
-use App\Models\CjAuth;
-use App\Models\Product;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +45,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('product', ProductController::class);
     Route::resource('product-images', ProductImageController::class)->only(['store', 'destroy']);
+    Route::resource('nav-icons', NaviconController::class);
 });
