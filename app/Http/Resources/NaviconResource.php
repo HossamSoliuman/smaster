@@ -15,11 +15,9 @@ class NaviconResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=> $this->id,
-			'url' => $this->url,
-			'image' => $this->image,
-            'created_at' => $this->created_at,
-            'last_update' => $this->updated_at,
+            'id' => $this->id,
+            'url' => $this->url,
+            'image' => $this->image,
         ];
     }
 }
