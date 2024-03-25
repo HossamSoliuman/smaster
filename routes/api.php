@@ -5,6 +5,7 @@ use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\NaviconController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Resources\UserResource;
@@ -47,6 +48,7 @@ Route::get('shipping-address/countries', [ShippingController::class, 'getCountri
 Route::get('shipping-address/cities', [ShippingController::class, 'getCities']);
 
 Route::get('banners', [BannerController::class, 'apiIndex']);
+Route::get('nav-icons', [NaviconController::class, 'apiIndex']);
 
 
 
