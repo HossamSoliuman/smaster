@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateNaviconRequest;
 use App\Http\Resources\NaviconResource;
 use Hossam\Licht\Controllers\LichtBaseController;
 
-class NaviconController extends LichtBaseController
+class NaviconController extends Controller
 {
     public function index()
     {
@@ -49,6 +49,6 @@ class NaviconController extends LichtBaseController
     public function apiIndex()
     {
         $navicons = Navicon::all();
-        return $this->successResponse(NaviconResource::collection($navicons));
+        return $this->apiResponse(NaviconResource::collection($navicons));
     }
 }
