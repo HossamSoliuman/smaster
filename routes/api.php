@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\AuthenticationController;
@@ -26,10 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('register', [AuthenticationController::class, 'register']);
 
-Route::get('test', function () {
-    $par = request()->input('par');
-    return redirect($par);
-});
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -64,3 +61,6 @@ Route::get('refresh-token', function () {
     $checkToken->handle();
     return 'refreshed';
 });
+
+Route::get('cj/categories', [CategoryController::class, 'index']);
+Route::get('cj/products', [CategoryController::class, 'products']);
